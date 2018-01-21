@@ -19,12 +19,11 @@ class Game {
     private static int playerHP, monsterHP, silverRing;
     private static String weapon, position;
 
-    private static TitleScreenHandler tsHandler = new TitleScreenHandler();
+    private static TitleScreenHandler titleScreenHandler = new TitleScreenHandler();
     private static ChoiceHandler choiceHandler = new ChoiceHandler();
 
     public static void main(String[] args) {
         new Game();
-        createGameScreen();
     }
 
     public Game() {
@@ -41,6 +40,8 @@ class Game {
 
         container.add(titleNamePanel);
         container.add(startButtonPanel);
+
+        createGameScreen();
     }
 
     private static void createTitleNamePanel() {
@@ -67,7 +68,7 @@ class Game {
         startButton.setBackground(Color.black);
         startButton.setForeground(Color.white);
         startButton.setFont(normalFont);
-        startButton.addActionListener(tsHandler);
+        startButton.addActionListener(titleScreenHandler);
     }
 
     private static void createGameScreen() {
@@ -106,17 +107,24 @@ class Game {
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new GridLayout(4, 1));
 
+        createChoiceButtons();
+        setChoiceButtons();
+
+        container.add(choiceButtonPanel);
+    }
+
+    private static void createChoiceButtons(){
         choiceButton1 = setChoiceButton("Choice 1", "c1");
         choiceButton2 = setChoiceButton("Choice 2", "c2");
         choiceButton3 = setChoiceButton("Choice 3", "c3");
         choiceButton4 = setChoiceButton("Choice 4", "c4");
+    }
 
+    private static void setChoiceButtons(){
         choiceButtonPanel.add(choiceButton1);
         choiceButtonPanel.add(choiceButton2);
         choiceButtonPanel.add(choiceButton3);
         choiceButtonPanel.add(choiceButton4);
-
-        container.add(choiceButtonPanel);
     }
 
     private static JButton setChoiceButton(String buttonName, String actionCommandName) {
@@ -134,13 +142,21 @@ class Game {
         playerPanel.setBounds(100, 15, 600, 50);
         playerPanel.setBackground(Color.black);
         playerPanel.setLayout(new GridLayout(1, 4));
-        container.add(playerPanel);
 
+        createPlayerPanelLabels();
+        setPlayerPanelLabels();
+
+        container.add(playerPanel);
+    }
+
+    private static void createPlayerPanelLabels(){
         hpLabel = setPlayerPanelLabel("HP: ");
         hpLabelNumber = setPlayerPanelLabel("");
         weaponLabel = setPlayerPanelLabel("Weapon: ");
         weaponLabelName = setPlayerPanelLabel("");
+    }
 
+    private static void setPlayerPanelLabels(){
         playerPanel.add(hpLabel);
         playerPanel.add(hpLabelNumber);
         playerPanel.add(weaponLabel);
