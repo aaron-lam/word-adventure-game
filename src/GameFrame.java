@@ -333,6 +333,8 @@ class GameFrame extends JFrame {
                             break;
                         case "c2":
                             attackGuard();
+                            if(playerHP < 1)
+                                lose();
                             break;
                         case "c3":
                             crossRoad();
