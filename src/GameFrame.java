@@ -5,15 +5,16 @@ import java.awt.event.ActionListener;
 
 class GameFrame extends JFrame {
     private static Container gameContainer;
-    private static JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel;
+    private static JPanel titleNamePanel, startButtonPanel, backGroundStoryButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, backGroundStoryPanel;
     private static JLabel titleNameLabel, playerPanelLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName;
     private static Font titleFont = new Font("Times New Roman", Font.PLAIN, 90);
     private static Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
-    private static JButton startButton, choiceButton, choiceButton1, choiceButton2, choiceButton3, choiceButton4;
-    private static JTextArea mainTextArea;
+    private static JButton startButton, backGroundStoryButton, choiceButton, choiceButton1, choiceButton2, choiceButton3, choiceButton4;
+    private static JTextArea mainTextArea, backGroundTextArea;
     private static int playerHP, monsterHP, silverRing;
     private static String weapon, position;
 
+    private static IntroScreenHandler introScreenHandler = new IntroScreenHandler();
     private static TitleScreenHandler titleScreenHandler = new TitleScreenHandler();
     private static ChoiceHandler choiceHandler = new ChoiceHandler();
 
@@ -25,7 +26,6 @@ class GameFrame extends JFrame {
         gameContainer = getContentPane();
         createTitleNamePanel();
         createTitleNameLabel();
-        createStartButtonPanel();
         createStartButtonPanel();
         createStartButton();
 
@@ -64,8 +64,8 @@ class GameFrame extends JFrame {
     }
 
     private static void createGameScreen() {
-        titleNamePanel.setVisible(false);
-        startButtonPanel.setVisible(false);
+        backGroundStoryPanel.setVisible(false);
+        backGroundStoryButtonPanel.setVisible(false);
 
         createMainTextPanel();
 
@@ -156,6 +156,52 @@ class GameFrame extends JFrame {
         weaponLabelName.setText(weapon);
         hpLabelNumber.setText("" + playerHP);
         townGate();
+    }
+
+    private static void createIntroScreen(){
+        titleNamePanel.setVisible(false);
+        startButtonPanel.setVisible(false);
+
+        createBackGroundStoryPanel();
+        createBackGroundStoryArea();
+
+        createBackGroundStoryButtonPanel();
+        createBackGroundStoryButton();
+
+        backGroundStoryPanel.add(backGroundTextArea);
+        backGroundStoryButtonPanel.add(backGroundStoryButton);
+
+        gameContainer.add(backGroundStoryPanel);
+        gameContainer.add(backGroundStoryButtonPanel);
+    }
+
+    private static void createBackGroundStoryPanel(){
+        backGroundStoryPanel = new JPanel();
+        backGroundStoryPanel.setBounds(20, 100, 600, 250);
+        backGroundStoryPanel.setBackground(Color.BLACK);
+    }
+
+    private static void createBackGroundStoryArea(){
+        backGroundTextArea = new JTextArea("This is background storydfgdfgdfgfdsgfdsgfdsg\ndfsohgkjdfshgikdfjsgh\naskdjfhasdilufhilusehfi");
+        backGroundTextArea.setBounds(100, 100, 600, 600);
+        backGroundTextArea.setBackground(Color.black);
+        backGroundTextArea.setForeground(Color.green);
+        backGroundTextArea.setFont(normalFont);
+        backGroundTextArea.setLineWrap(true);
+    }
+
+    private static void createBackGroundStoryButtonPanel() {
+        backGroundStoryButtonPanel = new JPanel();
+        backGroundStoryButtonPanel.setBounds(290, 400, 200, 100);
+        backGroundStoryButtonPanel.setBackground(Color.black);
+    }
+
+    private static void createBackGroundStoryButton() {
+        backGroundStoryButton = new JButton("START");
+        backGroundStoryButton.setBackground(Color.black);
+        backGroundStoryButton.setForeground(Color.RED);
+        backGroundStoryButton.setFont(normalFont);
+        backGroundStoryButton.addActionListener(introScreenHandler);
     }
 
     private static void townGate() {
@@ -313,6 +359,12 @@ class GameFrame extends JFrame {
 
     public static class TitleScreenHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            createIntroScreen();
+        }
+    }
+
+    public static class IntroScreenHandler implements ActionListener {
+        public void actionPerformed(ActionEvent event){
             createGameScreen();
         }
     }
