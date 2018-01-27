@@ -182,8 +182,8 @@ class GameFrame extends JFrame {
     }
 
     private static void createBackGroundStoryArea(){
-        backGroundTextArea = new JTextArea("This is background storydfgdfgdfgfdsgfdsgfdsg\ndfsohgkjdfshgikdfjsgh\naskdjfhasdilufhilusehfi");
-        backGroundTextArea.setBounds(100, 100, 600, 600);
+        backGroundTextArea = new JTextArea("You are an exiled prince,looking to reclaim your \npower to thre throne. You decided to go on an \nadvanture to gain more gifts to defeat all the\nenemies in your way.  ");
+        backGroundTextArea.setBounds(200, 100, 600, 600);
         backGroundTextArea.setBackground(Color.black);
         backGroundTextArea.setForeground(Color.green);
         backGroundTextArea.setFont(normalFont);
