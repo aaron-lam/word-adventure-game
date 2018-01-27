@@ -34,8 +34,6 @@ class GameFrame extends JFrame {
 
         gameContainer.add(titleNamePanel);
         gameContainer.add(startButtonPanel);
-
-        createGameScreen();
     }
 
     private static void createTitleNamePanel() {
@@ -60,7 +58,7 @@ class GameFrame extends JFrame {
     private static void createStartButton() {
         startButton = new JButton("START");
         startButton.setBackground(Color.black);
-        startButton.setForeground(Color.white);
+        startButton.setForeground(Color.RED);
         startButton.setFont(normalFont);
         startButton.addActionListener(titleScreenHandler);
     }
